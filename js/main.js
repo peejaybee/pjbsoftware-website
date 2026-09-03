@@ -88,7 +88,6 @@ function initRoiCalculator() {
 
   const outHoursSaved = document.getElementById('result-hours-saved');
   const outAnnualSavings = document.getElementById('result-annual-savings');
-  const outPayback = document.getElementById('result-payback');
 
   if (!teamInput || !hoursInput || !rateInput) return;
 
@@ -112,22 +111,11 @@ function initRoiCalculator() {
     // Annual direct labor cost savings: teamSize * hoursWeekly * 52 wks * hourlyRate * factor
     const annualSavings = Math.round(teamSize * hoursWeekly * 52 * hourlyRate * automationFactor);
 
-    // Estimated payback turnaround
-    let paybackPeriod = '< 60 Days';
-    if (annualSavings > 100000) {
-      paybackPeriod = '< 30 Days';
-    } else if (annualSavings < 25000) {
-      paybackPeriod = '< 90 Days';
-    }
-
     if (outHoursSaved) {
       outHoursSaved.textContent = monthlyHoursSaved.toLocaleString() + ' hrs';
     }
     if (outAnnualSavings) {
       outAnnualSavings.textContent = '$' + annualSavings.toLocaleString();
-    }
-    if (outPayback) {
-      outPayback.textContent = paybackPeriod;
     }
   }
 
