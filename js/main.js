@@ -175,12 +175,14 @@ function initContactForm() {
 
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name = form.querySelector('#name')?.value.trim();
     const email = form.querySelector('#email')?.value.trim();
+    const company = form.querySelector('#company')?.value.trim() || 'Not specified';
     const service = form.querySelector('#service')?.value;
+    const timeline = form.querySelector('#timeline')?.value || 'Not specified';
     const message = form.querySelector('#message')?.value.trim();
 
     if (!name || !email || !service || !message) {
@@ -191,31 +193,80 @@ function initContactForm() {
     // Simple email format check
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
-      showFeedback('Please enter a valid email address.', 'error');
+      showFeedback('Please enter a valid work email address.', 'error');
       return;
     }
 
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    submitBtn.innerHTML = 'Sending Request...';
+    submitBtn.innerHTML = 'Sending Inquiry...';
 
-    // Simulate sending / static inquiry workflow
-    setTimeout(() => {
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/info@pjbsoftware.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Consulting Inquiry: ${service} from ${name}`,
+          _template: 'table',
+          _captcha: 'false',
+          name: name,
+          email: email,
+          company: company,
+          service: service,
+          timeline: timeline,
+          message: message
+        })
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (response.ok && (result.success === 'true' || result.success === true)) {
+        form.reset();
+        showFeedback(
+          `<strong>Thank you, ${escapeHtml(name)}!</strong> Your inquiry has been sent to <strong>info@pjbsoftware.com</strong>. We will review your project requirements and respond within 24 business hours.`,
+          'success'
+        );
+      } else if (result.message && result.message.toLowerCase().includes('activation')) {
+        showFeedback(
+          `<strong>Activation Required:</strong> FormSubmit has sent a confirmation link to <strong>info@pjbsoftware.com</strong>. Please check your inbox and click <em>"Activate Form"</em> to enable delivery. Once clicked, future submissions will arrive immediately.`,
+          'success'
+        );
+      } else if (window.location.protocol === 'file:' || (result.message && result.message.toLowerCase().includes('web server'))) {
+        showFeedback(
+          `<strong>Local File Warning:</strong> FormSubmit requires the site to be browsed through a web server (such as your live Cloudflare domain or locally via <code>http://localhost:8000</code>). Browsers block form delivery from raw <code>file:///</code> paths.`,
+          'error'
+        );
+      } else {
+        const errorMsg = result.message || 'Submission was not accepted by the mail service.';
+        showFeedback(
+          `${escapeHtml(errorMsg)} Please reach out directly to <a href="mailto:info@pjbsoftware.com?subject=Consulting%20Inquiry%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(message)}" style="color: var(--accent-cyan-light); text-decoration: underline; font-weight: bold;">info@pjbsoftware.com</a>.`,
+          'error'
+        );
+      }
+    } catch (err) {
+      console.error('Contact form submission error:', err);
+      if (window.location.protocol === 'file:') {
+        showFeedback(
+          `<strong>Local File Warning:</strong> You are viewing this page as a local file (<code>file:///</code>). FormSubmit and browser security policies require an HTTP server (e.g. <code>http://localhost:8000</code> or your live Cloudflare site) to send AJAX requests.`,
+          'error'
+        );
+      } else {
+        showFeedback(
+          `There was an issue sending your message automatically. Please email us directly at <a href="mailto:info@pjbsoftware.com?subject=Consulting%20Inquiry%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(message)}" style="color: var(--accent-cyan-light); text-decoration: underline; font-weight: bold;">info@pjbsoftware.com</a> and we will respond promptly.`,
+          'error'
+        );
+      }
+    } finally {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
-      form.reset();
-
-      showFeedback(
-        `<strong>Thank you, ${escapeHtml(name)}!</strong> Your inquiry regarding "${escapeHtml(service)}" has been received. Our principal consultant will reach out within 24 business hours to schedule your strategy session.`,
-        'success'
-      );
-
-      // Smooth scroll to message
       if (feedbackBox) {
         feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
-    }, 600);
+    }
   });
 
   function showFeedback(msg, type) {
