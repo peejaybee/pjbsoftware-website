@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Book Consultation | PJB Software & Consulting</title>
+  <meta name="description" content="Get in touch with PJB Software & Consulting. Book a 30-minute discovery call to discuss AI integration and workflow automation.">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="PJB Software Home">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <span>PJB<span class="gradient-text">Software</span></span>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="nav-menu" id="primary-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#solutions" class="nav-link">Solutions</a>
+        <a href="index.html#roi-calculator" class="nav-link">ROI Calculator</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm">Book Strategy Call</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Contact Header -->
+    <section class="section" style="padding-top: 4rem; padding-bottom: 2rem;">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">Initiate Project</div>
+          <h1>Schedule Your <span class="gradient-text">Discovery Consultation</span></h1>
+          <p>Tell us about your operational bottlenecks or AI ambitions. We'll examine your architecture and map out a high-ROI automation strategy.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form & Info Section -->
+    <section class="section" style="padding-top: 1rem;">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 3rem;" class="hero-grid">
+          
+          <!-- Consultation Request Form -->
+          <div class="form-card">
+            <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem;">Project Inquiry Form</h2>
+            <p style="margin-bottom: 2rem; font-size: 0.95rem;">Fields marked with <span style="color: var(--accent-cyan-light); font-weight: bold;">*</span> are required.</p>
+
+            <div id="form-feedback" class="form-feedback"></div>
+
+            <form id="consultation-form" novalidate>
+              <div class="form-grid">
+                <!-- Full Name -->
+                <div class="form-group">
+                  <label for="name" class="form-label">Full Name *</label>
+                  <input type="text" id="name" class="form-control" placeholder="Jane Doe" required>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label for="email" class="form-label">Work Email *</label>
+                  <input type="email" id="email" class="form-control" placeholder="jane@company.com" required>
+                </div>
+
+                <!-- Company -->
+                <div class="form-group">
+                  <label for="company" class="form-label">Company / Organization</label>
+                  <input type="text" id="company" class="form-control" placeholder="Acme Logistics Inc.">
+                </div>
+
+                <!-- Service Focus -->
+                <div class="form-group">
+                  <label for="service" class="form-label">Primary Service Area *</label>
+                  <select id="service" class="form-control" required>
+                    <option value="" disabled selected>Select an area of interest...</option>
+                    <option value="Custom AI & LLM Systems">Custom AI & LLM Systems (RAG, Fine-tuning)</option>
+                    <option value="Workflow & Process Automation">End-to-End Workflow Automation</option>
+                    <option value="Autonomous AI Agents">Autonomous AI Agents & Tool Execution</option>
+                    <option value="AI Strategy & Architecture Audit">AI Strategy & Architecture Audit</option>
+                    <option value="Other Technical Challenge">Other / Custom Inquiry</option>
+                  </select>
+                </div>
+
+                <!-- Timeline / Scope -->
+                <div class="form-group form-col-full">
+                  <label for="timeline" class="form-label">Target Implementation Timeline</label>
+                  <select id="timeline" class="form-control">
+                    <option value="Immediate (Next 2-4 weeks)">Immediate (Next 2 - 4 weeks)</option>
+                    <option value="This Quarter (Next 1-3 months)">This Quarter (Next 1 - 3 months)</option>
+                    <option value="Exploring Feasibility">Currently exploring feasibility & budgets</option>
+                  </select>
+                </div>
+
+                <!-- Message -->
+                <div class="form-group form-col-full">
+                  <label for="message" class="form-label">Describe Your Workflow or Problem Statement *</label>
+                  <textarea id="message" class="form-control" placeholder="Tell us about the current manual processes, the software applications involved, and what your ideal automated workflow looks like..." required></textarea>
+                  <span class="form-hint">Please do not include confidential credentials or secrets.</span>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-col-full" style="margin-top: 1rem;">
+                  <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                    Submit Consultation Request &rarr;
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Sidebar Information -->
+          <div style="display: flex; flex-direction: column; gap: 2rem;">
+            <!-- Direct Info -->
+            <div class="card" style="padding: 2rem;">
+              <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--accent-cyan-light);">Direct Channels</h3>
+              
+              <div style="margin-bottom: 1.25rem;">
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block;">Email</span>
+                <a href="mailto:info@pjbsoftware.com" style="color: var(--text-light); font-weight: 600;">info@pjbsoftware.com</a>
+              </div>
+
+              <div style="margin-bottom: 1.25rem;">
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block;">Response Time</span>
+                <span style="color: var(--text-secondary); font-size: 0.95rem;">Within 24 business hours</span>
+              </div>
+
+              <div>
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); display: block;">Location</span>
+                <span style="color: var(--text-secondary); font-size: 0.95rem;">Remote-First / Available Globally</span>
+              </div>
+            </div>
+
+            <!-- What Happens Next -->
+            <div class="card" style="padding: 2rem;">
+              <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem; color: var(--accent-cyan-light);">What Happens Next?</h3>
+              
+              <ol style="list-style: none; display: flex; flex-direction: column; gap: 1.2rem; padding: 0;">
+                <li style="display: flex; gap: 0.85rem;">
+                  <span style="font-weight: 800; color: var(--accent-cyan); font-family: var(--font-mono);">01</span>
+                  <div style="font-size: 0.9rem;">
+                    <strong style="color: var(--text-light); display: block;">Initial Review</strong>
+                    We analyze your tooling stack to ensure our engineering expertise is a perfect match.
+                  </div>
+                </li>
+                <li style="display: flex; gap: 0.85rem;">
+                  <span style="font-weight: 800; color: var(--accent-cyan); font-family: var(--font-mono);">02</span>
+                  <div style="font-size: 0.9rem;">
+                    <strong style="color: var(--text-light); display: block;">Strategy Session</strong>
+                    A 30-minute technical deep dive to discuss data security, inputs/outputs, and edge cases.
+                  </div>
+                </li>
+                <li style="display: flex; gap: 0.85rem;">
+                  <span style="font-weight: 800; color: var(--accent-cyan); font-family: var(--font-mono);">03</span>
+                  <div style="font-size: 0.9rem;">
+                    <strong style="color: var(--text-light); display: block;">Clear Proposal</strong>
+                    You receive a fixed-deliverable scope document with guaranteed timeline and ROI calculation.
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+      <div class="container" style="max-width: 860px;">
+        <div class="section-header">
+          <div class="badge">Frequently Asked Questions</div>
+          <h2>Common Client Questions</h2>
+          <p>Everything you need to know about working with PJB Software & Consulting.</p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>How do you protect our confidential business data?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              Data sovereignty is paramount. We never use client data to train foundation models, and we configure zero-retention policies on API endpoints. For sensitive proprietary IP or strict regulatory compliance (HIPAA, GDPR, SOC 2), we deploy self-hosted open-weight models directly within your private virtual cloud (VPC) or on-prem hardware.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>How quickly can we see working results?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              We prioritize velocity through our 2-week Proof-of-Concept (PoC) sprint. Instead of waiting months for comprehensive documentation, you get a working, testable pipeline processing real data samples within 10-14 business days to validate ROI before expanding.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Do we need an in-house engineering team to maintain the system?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              No. We build automation architectures with robust automated error recovery, notifications, and intuitive operational dashboards. If you have an internal development team, we provide clean, documented source code and pull requests. If you don't, we can provide ongoing maintenance or configure self-healing low-maintenance pipelines.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Can you integrate with legacy desktop software or internal ERPs?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              Yes. Modern enterprises often run on custom on-prem databases, legacy ERPs without standard REST APIs, or desktop software. We engineer custom middleware, secure database connectors, and intelligent document ingestion to connect legacy backends to modern AI models.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <span>PJB<span class="gradient-text">Software</span></span>
+          </a>
+          <p>Practical artificial intelligence and workflow automation engineering designed for sustainable enterprise ROI.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#solutions">Solutions</a></li>
+            <li><a href="index.html#roi-calculator">ROI Calculator</a></li>
+            <li><a href="about.html">About Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <ul class="footer-links">
+            <li><a href="contact.html">Request Strategy Call</a></li>
+            <li><a href="mailto:info@pjbsoftware.com">info@pjbsoftware.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 PJB Software & Consulting. All rights reserved.</p>
+        <p>Engineered for high performance, security, and privacy.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
